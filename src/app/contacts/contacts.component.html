@@ -1,0 +1,33 @@
+<!-- <div>
+    <div class="form-group">
+            <label class="control-label">Message:</label>
+            <input type="text" [(ngModel)]="commentaire.message"/>
+            <button [disabled]="!commentaire.message" (click)="onAddCommentaire()" > Ajouter commentaire!</button>
+    </div>
+</div>
+-->
+<form #f="ngForm" (ngSubmit)="onAddCommentaire1(f.value)">
+
+    <div>
+        <label> Message:</label>
+        <input required type="text" name="message" ngModel />
+        <button [disabled]="!f.valid" type="submit">Ajouter Commentire!</button>
+    </div>
+
+</form>
+
+
+
+<div>
+    <div>Nom:{{info.Nom}}</div>
+    <div>Tel:{{info.Tel}}</div>
+
+    <ul>
+        <li *ngFor="let c of comments">
+            {{c.date|date}}
+            {{c.message}}
+        </li>
+
+    </ul>
+
+</div>
