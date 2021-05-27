@@ -6,28 +6,44 @@
     </div>
 </div>
 -->
-<form #f="ngForm" (ngSubmit)="onAddCommentaire1(f.value)">
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading "> Contacts! </div>
+        <div class="panel-body">
+            <h3>Infos</h3>
+            <div>
+                <ul class="list-group">
+                    <li class="list-group-item"> Nom:{{infos.Nom}}</li>
+                    <li class="list-group-item">Tel:{{infos.Tel}} </li>
+                </ul>
 
-    <div>
-        <label> Message:</label>
-        <input required type="text" name="message" ngModel />
-        <button [disabled]="!f.valid" type="submit">Ajouter Commentire!</button>
+
+            </div>
+
+            <form #f="ngForm" (ngSubmit)="onAddCommentaire1(f.value)">
+
+                <div class="form-group">
+
+                    <label class="control-label"> Message:</label>
+                    <input required type="text" name="message" ngModel />
+                    <button [disabled]="!f.valid" type="submit" class="btn btn-primary">Ajouter Commentire!</button>
+
+                </div>
+
+            </form>
+            <ul class="list-group">
+                <li *ngFor="let c of comments" class="list-group-item">
+                    {{c.date|date}}
+                    {{c.message}}
+                </li>
+
+            </ul>
+
+        </div>
     </div>
-
-</form>
-
-
-
-<div>
-    <div>Nom:{{infos.Nom}}</div>
-    <div>Tel:{{infos.Tel}}</div>
-
-    <ul>
-        <li *ngFor="let c of comments">
-            {{c.date|date}}
-            {{c.message}}
-        </li>
-
-    </ul>
-
 </div>
+
+
+
+
+

@@ -1,0 +1,37 @@
+<p></p>
+<div class="container"><div class="panel panel-primary">
+    <div class="panel-heading"> Gallery Compenent!</div>
+    <div class="panel-body">
+        <form #f="ngForm" (ngSubmit)="onSearch(f.value)">
+
+            <div class="from-group">
+                <label>Mot cle</label>
+                <input type="text" name="motCle" ngModel required [(ngModel)]="motCle">
+                <button type="submit" class="btn btn-primary"> chercher!</button>
+            </div>
+        </form>
+        <div class="row">
+        <div *ngFor="let p of pagePhotos?.hits" class="col-md-3"> <!-- une autre sol que ? est d'utiliser <div *ngIf="pagephotos" c-a-d cette div sera afficher que c pagephotos est initialiser >-->>
+            <div class="panel panel-primary cadre">
+                <div class="panel panel-heading"> {{p.tags}} </div>
+                <div class="panel panel-body">
+                        <img src="{{p.previewURL}}">
+                        
+                       
+                </div>
+            </div>
+        </div>
+         </div>
+
+        <div class="row" >
+                <ul class="nav nav-pills">
+                    <li [ngClass]="{'active':currentPage===i+1}" *ngFor="let page of pages ;let i=index ">
+                        <a class="clickable" (click) = "goTOpage(i)">{{i}}</a> 
+                    </li>
+                </ul>
+
+        </div>
+    </div>
+</div>
+ </div>
+

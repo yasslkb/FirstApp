@@ -21,7 +21,7 @@ export class ContactsComponent implements OnInit {
 */
   //je declare des attributs dans je vais mettre les donnes que je vais recupere du service :
    infos: any;
-  comments: any = [];
+   comments: any = [];
   
   
 
@@ -29,12 +29,13 @@ export class ContactsComponent implements OnInit {
     this.infos = this.monservice.getInfo();
     this.comments = this.monservice.getComments();
   }
-  commentaire!: { date: Date; message: String; };
+  commentaire: { date: Date; message: string; } = { date : new Date(), message:''};
   
   onAddCommentaire1(c:{date:Date,message:string}) {
+    this.commentaire.message ='';
     this.monservice.addComment(c);
-    this.commentaire.message = '';
     this.comments = this.monservice.getComments();
+    
   }
 
 

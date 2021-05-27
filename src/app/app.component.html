@@ -1,6 +1,12 @@
-
-<div>
-    <app-about></app-about>
-    <app-contacts></app-contacts>
-
+<p></p>
+<div class="container">
+    <div class="btn-group">
+    <button routerLink='/about' class="btn btn-primary">About!</button>
+    <button routerLink='/contact' class="btn btn-primary">Contacts!</button>
+    <button routerLink='/gallery' class="btn btn-primary">Gallery</button>
 </div>
+</div>
+<div class="container spacer">
+    <router-outlet></router-outlet>
+</div>
+
