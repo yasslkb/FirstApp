@@ -1,6 +1,7 @@
-import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
+import { nullSafeIsEquivalent, ThrowStmt } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit, Type } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MonserviceService } from '../core/monservice.service';
 
 @Component({
   selector: 'app-contacts',
@@ -8,22 +9,9 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./contacts.component.css']
 })
 export class ContactsComponent implements OnInit {
-  info: {
-    Nom: string,
-    Tel: number,
-  } = {
-      Nom: 'yassine',
-      Tel: 78786686,
-    };
-  
-  comments = [
-    { date: new Date(), message: 'a' },
-    { date: new Date(), message: 'b' },
-    { date: new Date(), message: 'c' },
-    
-  ];
+ 
 
-  commentaire = { date:new Date() , message: '' };
+  
    
  /* onAddCommentaire() {
     this.commentaire.date = new Date();
@@ -31,17 +19,24 @@ export class ContactsComponent implements OnInit {
     this.commentaire = { date: new Date(), message: '' };
   };
 */
+  //je declare des attributs dans je vais mettre les donnes que je vais recupere du service :
+   infos: any;
+  comments: any = [];
   
-  onAddCommentaire1(f:NgForm){
-    this.commentaire.date = new Date();
-    this.comments.push(f.value);
-    this.commentaire = { date: new Date(), message: '' };
+  
 
-   
-  } 
+  constructor(private monservice: MonserviceService) {
+    this.infos = this.monservice.getInfo();
+    this.comments = this.monservice.getComments();
+  }
+  commentaire!: { date: Date; message: String; };
+  
+  onAddCommentaire1(c:{date:Date,message:string}) {
+    this.monservice.addComment(c);
+    this.commentaire.message = '';
+    this.comments = this.monservice.getComments();
+  }
 
-
-  constructor() { }
 
   ngOnInit(): void {
   }
